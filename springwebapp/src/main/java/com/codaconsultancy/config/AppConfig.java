@@ -6,7 +6,8 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = {"com.codaconsultancy.controller"})
+@ComponentScan(basePackages = {"com.codaconsultancy.controller",
+        "com.codaconsultancy.service"})
 public class AppConfig {
 }
 
