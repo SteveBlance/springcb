@@ -11,7 +11,7 @@ public class ServletInitializer extends AbstractAnnotationConfigDispatcherServle
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class<?>[]{AppConfig.class};
+        return new Class<?>[]{AppConfig.class, DatabaseConfig.class};
     }
 
     @Override

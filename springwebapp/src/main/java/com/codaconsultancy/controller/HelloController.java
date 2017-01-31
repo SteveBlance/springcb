@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 @Controller
 public class HelloController {
 
@@ -27,5 +29,23 @@ public class HelloController {
     public String hello() {
         UserService userService = (UserService) applicationContext.getBean("userService");
         return "nm of users: " + userService.findNumberOfUsers();
+    }
+
+    @RequestMapping("beans")
+    @ResponseBody
+    public String listBeanNames() {
+        StringBuilder beanNames = new StringBuilder("Beans:\n");
+        String[] beans = applicationContext.getBeanDefinitionNames();
+        for (String bean : beans) {
+            beanNames.append(bean).append("\n");
+        }
+        return toHtml(beanNames.toString());
+    }
+
+    private String toHtml(String pageText) {
+        StringBuilder html = new StringBuilder("<html><head></head><body><p>");
+        html.append(pageText);
+        html.append("</p></body></html>");
+        return html.toString().replace("\n", "<br />");
     }
 }
