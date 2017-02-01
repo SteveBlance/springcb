@@ -4,6 +4,6 @@
     <title>User List</title>
 </head>
 <body>
-There are loads of users...
+<p>There are ${nbUsers} users</p>
 </body>
 </html>
