@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UserController {
 
     @RequestMapping("/list")
-    public void userList(Model model) {
+    public String userList(Model model) {
         model.addAttribute("nbUsers", 13);
+        return "list";
     }
 
     @RequestMapping("/friends")
