@@ -2,8 +2,20 @@
         "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
         "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
-    <definition name="template" template="/WEB-INF/jsp/templates/template.jsp"/>
-    <definition name="*" extends="template">
+
+    <definition name="template1" template="/WEB-INF/templates/template1.jsp"/>
+    <definition name="template2" template="/WEB-INF/templates/template2.jsp"/>
+
+    <definition name="main_*" extends="template1">
         <put-attribute name="body" value="/WEB-INF/jsp/{1}.jsp"/>
     </definition>
+
+    <definition name="secondary_*" extends="template2">
+        <put-attribute name="body" value="/WEB-INF/jsp/{1}.jsp"/>
+    </definition>
+
+    <definition name="main_*/*" extends="template1">
+        <put-attribute name="body" value="/WEB-INF/jsp/{1}/{2}.jsp"/>
+    </definition>
+
 </tiles-definitions>

@@ -26,8 +26,7 @@ public class AppConfig {
     // declare Tiles as a view resolver
     @Bean
     public ViewResolver tilesViewResolver() {
-        TilesViewResolver resolver = new TilesViewResolver();
-        return resolver;
+        return new TilesViewResolver();
     }
 }
 

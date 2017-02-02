@@ -5,7 +5,7 @@
     <meta charset="utf-8">
 </head>
 <body>
-<h1>Spring Cookbook</h1>
+<h1>Using Template 1</h1>
 <tiles:insertAttribute name="body"/>
 </body>
 </html>

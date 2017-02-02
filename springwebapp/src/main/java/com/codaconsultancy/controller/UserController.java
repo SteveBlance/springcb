@@ -12,12 +12,12 @@ public class UserController {
     @RequestMapping("/list")
     public String userList(Model model) {
         model.addAttribute("nbUsers", 13);
-        return "list";
+        return "main_user/list";
     }
 
     @RequestMapping("/friends")
     public String userFriends() {
-        return "my_friends";
+        return "secondary_my_friends";
     }
 
     @RequestMapping("/{id}/{field}")
