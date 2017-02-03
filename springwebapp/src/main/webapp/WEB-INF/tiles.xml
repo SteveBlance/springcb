@@ -7,14 +7,17 @@
     <definition name="template2" template="/WEB-INF/templates/template2.jsp"/>
 
     <definition name="main_*" extends="template1">
+        <put-attribute name="title" value="{1}.title"/>
         <put-attribute name="body" value="/WEB-INF/jsp/{1}.jsp"/>
     </definition>
 
     <definition name="secondary_*" extends="template2">
+        <put-attribute name="title" value="{1}.title"/>
         <put-attribute name="body" value="/WEB-INF/jsp/{1}.jsp"/>
     </definition>
 
     <definition name="main_*/*" extends="template1">
+        <put-attribute name="title" value="{2}.title"/>
         <put-attribute name="body" value="/WEB-INF/jsp/{1}/{2}.jsp"/>
     </definition>
 
