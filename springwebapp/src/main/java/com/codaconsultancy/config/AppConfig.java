@@ -22,7 +22,7 @@ import java.util.Locale;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = {"com.codaconsultancy.controller",
-        "com.codaconsultancy.service"})
+        "com.codaconsultancy.service", "com.codaconsultancy.repository"})
 public class AppConfig extends WebMvcConfigurerAdapter {
 
     // declare Tiles configuration file
