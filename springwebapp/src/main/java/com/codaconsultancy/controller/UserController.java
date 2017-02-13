@@ -18,7 +18,8 @@ public class UserController {
 
     @RequestMapping("/list")
     public String userList(Model model) {
-        model.addAttribute("nbUsers", 13);
+        int size = userDAO.findAll().size();
+        model.addAttribute("nbUsers", size);
         return "main_user/list";
     }
 
