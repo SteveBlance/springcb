@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -37,6 +38,17 @@ public class UserDAO {
         String sql = "insert into user (first_name, age) values (?, ?)";
         System.out.println("Adding user " + user.getFirstName() + " aged " + user.getAge());
         jdbcTemplate.update(sql, user.getFirstName(), user.getAge());
+    }
+
+    public void add(List<User> users) {
+        String sql = "insert into user (first_name, age) values (?, ?)";
+
+        List<Object[]> userRows = new ArrayList<Object[]>();
+        for (User user : users) {
+            userRows.add(new Object[]{user.getFirstName(), user.getAge()});
+        }
+
+        jdbcTemplate.batchUpdate(sql, userRows);
     }
 
     public void update(User user) {
