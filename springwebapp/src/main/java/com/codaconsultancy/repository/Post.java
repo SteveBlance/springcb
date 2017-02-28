@@ -8,6 +8,13 @@ public class Post {
     private Date date;
     private User user;
 
+    public Post() {
+    }
+
+    public Post(String title) {
+        this.title = title;
+    }
+
     public long getId() {
         return id;
     }
