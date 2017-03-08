@@ -1,5 +1,6 @@
 package com.codaconsultancy.repository;
 
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -23,6 +24,9 @@ public class UserDAO {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    @Autowired
+    SessionFactory sessionFactory;
+
     public User findById(Long id) {
         String sql = "select * from user where id=?";
         User user = jdbcTemplate.queryForObject(sql, new Object[]{id}, new UserMapper());
@@ -36,11 +40,17 @@ public class UserDAO {
         return jdbcTemplate.query(sql, new UserWithPosts());
     }
 
+
+    @Transactional
     public void add(User user) {
-        String sql = "insert into user (first_name, age) values (?, ?)";
-        System.out.println("Adding user " + user.getFirstName() + " aged " + user.getAge());
-        jdbcTemplate.update(sql, user.getFirstName(), user.getAge());
+        sessionFactory.getCurrentSession().saveOrUpdate(user);
     }
+
+//    public void add(User user) {
+//        String sql = "insert into user (first_name, age) values (?, ?)";
+//        System.out.println("Adding user " + user.getFirstName() + " aged " + user.getAge());
+//        jdbcTemplate.update(sql, user.getFirstName(), user.getAge());
+//    }
 
     public void add(List<User> users) {
         String sql = "insert into user (first_name, age) values (?, ?)";

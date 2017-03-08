@@ -1,15 +1,20 @@
 package com.codaconsultancy.config;
 
+import com.codaconsultancy.repository.User;
+import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.orm.hibernate4.HibernateTransactionManager;
+import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import javax.sql.DataSource;
+import java.util.Properties;
 
 
 @Configuration
@@ -28,6 +33,24 @@ public class DatabaseConfig {
         dataSource.setPassword("");
 
         return dataSource;
+    }
+
+    @Bean
+    public SessionFactory sessionFactory(DataSource dataSource) {
+        LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
+        Properties props = new Properties();
+        props.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+        props.put("hibernate.show_sql", "true");
+        sessionBuilder.addProperties(props);
+
+        sessionBuilder.addAnnotatedClass(User.class);
+
+        return sessionBuilder.buildSessionFactory();
+    }
+
+    @Bean
+    public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
+        return new HibernateTransactionManager(sessionFactory);
     }
 
     @Bean
