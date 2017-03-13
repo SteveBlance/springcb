@@ -1,5 +1,6 @@
 package com.codaconsultancy.config;
 
+import com.codaconsultancy.repository.Post;
 import com.codaconsultancy.repository.User;
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
@@ -44,6 +45,7 @@ public class DatabaseConfig {
         sessionBuilder.addProperties(props);
 
         sessionBuilder.addAnnotatedClass(User.class);
+        sessionBuilder.addAnnotatedClass(Post.class);
 
         return sessionBuilder.buildSessionFactory();
     }

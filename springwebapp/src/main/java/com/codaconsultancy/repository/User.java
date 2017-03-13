@@ -1,9 +1,6 @@
 package com.codaconsultancy.repository;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +14,10 @@ public class User {
     @Column(name = "first_name")
     private String firstName;
 
+    @Column(name = "age")
     private Integer age;
+
+    @OneToMany(mappedBy = "user")
     private List<Post> posts = new ArrayList<Post>();
 
     public User(String firstName, Integer age) {

@@ -1,11 +1,23 @@
 package com.codaconsultancy.repository;
 
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
 public class Post {
+
+    @Id
+    @GeneratedValue
     private long id;
+
+    @Column(name = "title")
     private String title;
+
+    @Column(name = "date")
     private Date date;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
 
     public Post() {
